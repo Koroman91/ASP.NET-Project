@@ -1,0 +1,6 @@
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.csprojResolveAssemblyReference.cache
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\bin\Shop.dll.config
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\bin\Shop.dll
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\bin\Shop.pdb
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.dll
+c:\users\stefan-ivan\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.pdb

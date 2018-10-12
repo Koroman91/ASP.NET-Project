@@ -63,10 +63,13 @@
     <Content Include="Administrator\Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Images\adminicon1.png" />
+    <Content Include="Images\EmptyShoppingCart.jpg" />
+    <Content Include="Images\HappyShopping.jpg" />
     <Content Include="Images\shop1.png" />
     <Content Include="Images\ShopCartProject.png" />
     <Content Include="Images\shopping-cart-icon.png" />
     <Content Include="Images\shoppingcart.png" />
+    <Content Include="Images\Star.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

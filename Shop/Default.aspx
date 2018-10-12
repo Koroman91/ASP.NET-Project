@@ -92,7 +92,7 @@
                                 <tr>
                                     <td class="style2">
                                         &nbsp;
-                                        <asp:Label ID="lblCategoryName" runat="server" Front-Size="15pt" ForeColor="#6600CC"></asp:Label>
+                                        <asp:Label ID="lblCategoryName" runat="server" Font-Size="15pt" ForeColor="#6600CC"></asp:Label>
                                     </td>
                                     <td class="style3" style="border-left-style: ridge; border-width: thin; border-color: #9900FF">
                                         &nbsp;
@@ -110,7 +110,7 @@
                                       <asp:Panel ID="pnlProducts" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
                                     BorderStyle="Inset" BorderWidth="1px">
                                       <asp:DataList ID="dlProducts" runat="server" RepeatColumns="3" Width="600px" Font-Bold="False"
-                                        Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False">
+                                        Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" OnSelectedIndexChanged="dlProducts_SelectedIndexChanged">
                                          <ItemTemplate>
                                              <div align="left">
                                                  <table cellspacing="1" class="style4" style="border: 1px ridge #9900FF">
@@ -121,25 +121,31 @@
                                                      </tr>
                                                     <tr>
                                                         <td>
-                                                            <img alt="" src="<%# Bind('ImageUrl') %>" runat="server" id="imgProductPhoto" style="border: ridge 1px black;
+                                                            <img alt="" src='<%# Bind("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
                                                             width: 173px; height: 160px;" />
                                                         </td>
                                                     </tr>
                                                      <tr>
                                                          <td>
-                                                             Price:<asp:Label ID="lblPrice" runat="server" Text="<%# Bind('Price') %>"></asp:Label>
+                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                             <asp:Image ID="imgStar" runat="server" Visible="false" ImageUrl="~/Images/Star.png" />
+                                                             Stock:&nbsp;
+                                                             <asp:Label ID="lblAvailableStock" runat="server" Text='<%# Eval("AvailableStock") %>'
+                                                                 ToolTip="Available Stock" ForeColor="Red" Font-Bold="true"></asp:Label>
+                                                             <asp:HiddenField ID="hfProductID" runat="server" Value='<%# Eval("ProductID") %>' />
                                                          </td>
                                                      </tr>
                                                      <tr>
                                                          <td>
-                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument="<%# Bind('ProductID') %>"
+                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument='<%# Bind("ProductID") %>'
                                                          OnClick="btnAddToCart_Click" Text="Add To Cart" Width="100%" BorderColor="Black"
-                                                         BorderStyle="Inset" BorderWidth="1px" />
+                                                         BorderStyle="Inset" BorderWidth="1px" CausesValidation="false" />
                                                         </td>
                                                      </tr>
                                                  </table>
                                              </div>
                                          </ItemTemplate> 
+                                          <ItemStyle Width="33%" />
                                          </asp:DataList> 
                                          </asp:Panel> 
                                       <asp:Panel ID="pnlMyCart" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
@@ -160,18 +166,18 @@
                                                             </tr>
                                                             <tr>
                                                         <td>
-                                                            <img alt="" src="<%# Bind('ImageUrl') %>" runat="server" id="imgProductPhoto" style="border: ridge 1px black;
+                                                            <img alt="" src='<%# Bind("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
                                                             width: 112px; height: 100px;" />
                                                         </td>
                                                     </tr>
                                                      <tr>
                                                          <td>
-                                                             Price:<asp:Label ID="lblPrice" runat="server" Text="<%# Bind('Price') %>"></asp:Label>
+                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
                                                          </td>
                                                      </tr>
                                                         <tr>
                                                         <td>
-                                                            <asp:Button ID="btnRemoveFromCart" runat="server" CommandArgument="<%# Bind('ProductID') %>"
+                                                            <asp:Button ID="btnRemoveFromCart" runat="server" CommandArgument='<%# Bind("ProductID") %>'
                                                             Text="RemoveFromCart" Width="100%" BorderColor="Black" BorderStyle="Inset" BorderWidth="1px"
                                                                 OnClick="btnRemoveFromCart_Click" />
                                                         </td>
@@ -183,16 +189,17 @@
                                          </asp:Panel>  
                                    </td>            
                                   <td class="style3" valign="top" align="center">
-                                      <asp:Panel ID="pnlCategories" runat="server" ScrollBars="Auto" Heigh="500px" BorderColor="Black"
+                                      <asp:Panel ID="pnlCategories" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
                                      BorderStyle="Inset" BorderWidth="1px">
                                      <asp:DataList ID="dlCategories" runat="server" BackColor="White" BorderColor="#CCCCCC"
                                      BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"
                                      Width="252px">
                                      <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                      <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                         <ItemStyle BackColor="#DEDFDE" ForeColor="Black" />
                                      <ItemTemplate>
-                                         <asp:LinkButton ID="lbtnCategory" runat="server" Text="<%# Bind('CategoryName') %>"
-                                         OnClick="lbtnCategory_Click" CommandArgument="<%# Bind('CategoryID') %>"></asp:LinkButton>
+                                         <asp:LinkButton ID="lbtnCategory" runat="server" Text='<%# Bind("CategoryName") %>'
+                                         OnClick="lbtnCategory_Click" CommandArgument='<%# Bind("CategoryID") %>'></asp:LinkButton>
                                      </ItemTemplate>
                                          <SelectedItemStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                     </asp:DataList>
@@ -210,9 +217,48 @@
                                   </td>
                               </tr>
                               <tr>
+                                  <td colspan="2">
+                                      <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
+                                          <div style="text-align: center;">
+                                              <br />
+                                              <br />
+                                              <br />
+                                              <br />
+                                              <br />
+                                          <asp:Image ID="Image4" runat="server" ImageUrl="~/Images/EmptyShoppingCart.jpg" Width="500px" />
+                                              <br />
+                                              <br />
+                                              <br />
+                                              <br />
+                                              <br />
+                                          </div>
+                                      </asp:Panel>
+                                      <asp:Panel ID="pnlOrderPlacedSuccessfully" runat="server" Visible="false">
+                                          <div style="text-align: center;">
+                                              <asp:Image ID="Image5" runat="server" ImageUrl="~/Images/HappyShopping.jpg" Width="500px" /><br />
+                                              <br />
+                                              <label>
+                                                  Order Places Successfully.</label><br />
+                                              <br />
+                                              Transaction Details Are Sent At EmailId Provided By You.<br />
+                                              <br />
+                                              <br />
+                                              <asp:Label ID="lblTransactioNo" runat="server" Style="font-weight: 700"></asp:Label>
+                                              <br />
+                                              <br />
+                                              <br />
+                                              <a href="TrackYourOrder.aspx" target="_blank">TrackYourTransactionDetailsHere</a>
+                                              <br />
+                                              <br />
+                                              <br />
+                                          </div>
+                                      </asp:Panel>
+                                  </td>
+                              </tr>
+                              <tr>
                                   <td colspan="2" align="center" style="border: thin ridge #9900FF">
                                       &nbsp;&copy; <a href="">Stefan Korolija</a>
-                                      || <a href="Admin/Login.aspx">AdminPanel</a>
+                                      || <a href="Admin/Login.aspx" target="_blank">AdminPanel</a> || <a href="TrackYourOrder.aspx" target="_blank">TrackOrderStatus</a>
                                   </td>
                               </tr>
                           </table>

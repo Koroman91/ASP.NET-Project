@@ -17,8 +17,28 @@ namespace Shop.Administrator
             if (!IsPostBack)
             {
                 GetCategories();
+            
+
+            AddSubmitEvent();
+
+            if (Request.QueryString["alert"] == "success")
+            {
+                Response.Write("<script>alert('Record Saved Sucessfully.');</script>");
             }
+         }
+
         }
+
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            UpdatePanelControlTrigger trigger = new PostBackTrigger();
+            trigger.ControlID = btnSubmit.UniqueID;
+
+            updatePanel.Triggers.Add(trigger);
+        }
+
+
 
         private void GetCategories()
         {
@@ -50,22 +70,26 @@ namespace Shop.Administrator
                     ProductImage = "~/ProductImages/" + uploadProductPhoto.FileName,
                     ProductPrice = txtProductPrice.Text,
                     ProductDescription = txtProductDescription.Text,
-                    CategoryID = Convert.ToInt32(ddlCategory.SelectedValue)
+                    CategoryID = Convert.ToInt32(ddlCategory.SelectedValue),
+                    TotalProducts = Convert.ToInt32(txtProductQuantity.Text)
                 };
                 k.AddNewProduct();
                 ClearText();
+                Response.Redirect("~/Administrator/AddNewProducts.aspx?alert=success");
             }
             else
             {
-                //Alert.Show("Upload Product Photo");
+                Response.Write("<script>alert('Please Upload Photo');</script>");
             }
         }
 
         private void ClearText()
         {
+            uploadProductPhoto = null;
             txtProductName.Text = string.Empty;
             txtProductPrice.Text = string.Empty;
             txtProductDescription.Text = string.Empty;
+            txtProductQuantity.Text = string.Empty;
         }
 
         private void SaveProductPhoto()

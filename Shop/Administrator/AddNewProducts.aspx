@@ -1,19 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administrator/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AddNewProducts.aspx.cs" Inherits="Shop.Administrator.AddNewProducts" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div align="center">
-        <h4>
-            Add New Products</h4>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div align="center">        
+            <asp:Label ID="lblTitle" runat="server" Style="font-weight: 700">Add New Products</asp:Label>
         <hr />
     </div>
-
-    <table align="center" cellspacing="1" style="width: 100%; beckground-color: #FFFFFF;">
+    <table align="center" cellspacing="1" style="width: 100%; background-color: #FFFFFF;">
         <tr>
             <td style="width: 50%; padding-left: 100px;" align="left">
                 Product Name :
             </td>
             <td style="width: 50%;" align="left">
                 <asp:TextBox ID="txtProductName" runat="server" Width="212px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                    ControlToValidate="txtProductName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
               <tr>
@@ -29,7 +29,8 @@
                 Product Category :
             </td>
             <td style="width: 50%;" align="left">
-                <asp:DropDownList ID="ddlCategory" runat="server" Width="212px" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCategory" runat="server" Width="212px">
+                </asp:DropDownList>
             </td>
         </tr>
               <tr>
@@ -57,7 +58,7 @@
             </td>
         </tr>
               <tr>
-            <td style="width: 50%; align="right">
+            <td style="width: 50%;" align="right">
                 &nbsp;
             </td>
             <td style="width: 50%;" align="left">
@@ -73,7 +74,7 @@
             </td>
         </tr>
               <tr>
-            <td style="width: 50%; align="right">
+            <td style="width: 50%;" align="right">
                 &nbsp;
             </td>
             <td style="width: 50%;" align="left">
@@ -81,7 +82,23 @@
             </td>
         </tr>
          <tr>
-            <td style="width: 50%; align="right">
+             <td style="width: 50%; padding-left: 100px;" align="left">
+                 Product Quantity :
+             </td>
+             <td style="width: 50%;" align="left">
+                 <asp:TextBox ID="txtProductQuantity" runat="server" Width="212px"></asp:TextBox>
+             </td>
+         </tr>
+        <tr>
+            <td style="width: 50%;" align="right">
+                &nbsp;
+            </td>
+            <td style="width: 50%;" align="left">
+                &nbsp;
+            </td>
+        </tr>       
+        <tr>
+            <td style="width: 50%;" align="right">
                 &nbsp;
             </td>
             <td style="width: 50%;" align="left">

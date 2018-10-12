@@ -135,5 +135,62 @@ namespace Shop
             return dt;
 
         }
+
+        protected void dlCartProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtProductQuantity_TextChanged(object seneder, EventArgs e)
+        {
+            TextBox txtQuantity = (sender as TextBox);
+
+            DataListItem currentItem = (sender as TextBox).NamingContainer as DataListItem;
+            HiddenField ProductID = currentItem.FindControl("hfProductID") as HiddenField;
+            Label lblAvailableStock = currentItem.FindControl("lblAvailableStock") as Label;
+
+            if (txtQuantity.Text == string.Empty || txtQuantity.Text == "0" || txtQuantity.Text == "1")
+            {
+                txtQuantity.Text = "1";
+            }
+            else
+            {
+                if (Session["ShopAdministrator"] !=null )
+                {
+                    if (Convert.ToInt32(txtQuantity.Text) <= Convert.ToInt32(lblAvailableStock.Text))
+                    {
+                        DataTable dt = (DataTable)Session["ShopAdministrator"];
+                        DataRow[] rows = dt.Select("ProductID= '" + ProductID.Value + "'");
+                        int index = dt.Rows.IndexOf(rows[0]);
+
+                        dt.Rows[index]["ProductQuantity"] = txtQuantity.Text;
+
+                        Session["ShopAdministrator"] = dt;
+                    }
+                    else
+                    {
+                        lblAvailableStock.Text = "Alert : Product Buyout should not be Mote than AvailableStock!";
+                        txtQuantity.Text = "1";
+                    }
+                }
+            }
+            UpdateTotalBill();
+        }
+
+        private void UpdateTotalBill()
+        {
+            long TotalPrice = 0;
+            long TotalProducts = 0;
+            foreach (DataListItem item in dlCartProducts.Items)
+            {
+                Label PriceLabel = item.FindControl("lblPrice") as Label;
+                TextBox ProductQuantity = item.FindControl("txtProductQuantity") as TextBox;
+                long ProductPrice = Convert.ToInt64(PriceLabel.Text) * Convert.ToInt64(ProductQuantity.Text);
+                TotalPrice = TotalPrice + ProductPrice;
+                TotalProducts = TotalProducts + Convert.ToInt32(ProductQuantity.Text);
+            }
+            txtTotalPrice.Text = Convert.ToString(TotalPrice);
+            txtTotalProducts.Text = Convert.ToString(TotalProducts);
+        }
     }
 }

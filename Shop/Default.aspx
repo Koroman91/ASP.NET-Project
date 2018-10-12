@@ -153,9 +153,10 @@
                                           <table align="center" cellspacing="1">
                                               <tr>
                                                   <td align="center">
+                                                      <asp:Label ID="lblAvailableStockAlert" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>
                                                       <asp:DataList ID="dlCartProducts" runat="server" RepeatColumns="3" Font-Bold="false"
                                                         Font-Italic="false" Font-Overline="false" Font-Strikeout="false" Font-Underline="false"
-                                                        Width="551px">
+                                                        Width="551px" OnSelectedIndexChanged="dlCartProducts_SelectedIndexChanged">
                                                 <ItemTemplate>
                                                     <div align="left">
                                                         <table cellspacing="1" style="border: 1px ridge #9900FF; text-align: center; width: 172px;"
@@ -167,19 +168,28 @@
                                                             <tr>
                                                         <td>
                                                             <img alt="" src='<%# Bind("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
-                                                            width: 112px; height: 100px;" />
+                                                            width: 157px; height: 130px;" />
                                                         </td>
                                                     </tr>
                                                      <tr>
                                                          <td>
+                                                             AvailableStock:&nbsp;
+                                                             <asp:Label ID="lblAvailableStock" runat="server" Text='<%# Eval("AvailableStock") %>'
+                                                                 ToolTip="Available Stock" ForeColor="Red" Font-Bold="true"></asp:Label>
+                                                             <br />
                                                              Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                             &nbsp;x&nbsp;
+                                                             <asp:TextBox ID="txtProductQuantity" runat="server" Width="10px" Height="10px" MaxLength="1"
+                                                                 OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true" Text='<%# Eval("ProductQuantity")%>'></asp:TextBox>
+                                                             <asp:HiddenField ID="hfProductID" runat="server" Value='<%# Eval("ProductID") %>' />
                                                          </td>
                                                      </tr>
                                                         <tr>
                                                         <td>
-                                                            <asp:Button ID="btnRemoveFromCart" runat="server" CommandArgument='<%# Bind("ProductID") %>'
+                                                            <hr />
+                                                            <asp:Button ID="btnRemoveFromCart" runat="server" CommandArgument='<%# Eval("ProductID") %>'
                                                             Text="RemoveFromCart" Width="100%" BorderColor="Black" BorderStyle="Inset" BorderWidth="1px"
-                                                                OnClick="btnRemoveFromCart_Click" />
+                                                                OnClick="btnRemoveFromCart_Click" CausesValidation="false" />
                                                         </td>
                                                         </tr>
                                                             </table>
@@ -209,7 +219,105 @@
                                           <table style="width: 258px;">
                                               <tr>
                                                   <td align="left">
-                                                      Name:
+                                                      Name;
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>
+                                                      <asp:TextBox ID="txtCustomerName" runat="server" Width="231px"></asp:TextBox>
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCustomerName"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td align="left">
+                                                      PhoneNo:
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>
+                                                      <asp:TextBox ID="txtCustomerPhoneNo" runat="server" Width="231px" MaxLength="10"></asp:TextBox>
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCustomerPhoneNo"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td align="left">
+                                                      EmailID:
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td>
+                                                      <asp:TextBox ID="txtCustomerEmailID" runat="server" Width="231px"></asp:TextBox>
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCustomerEmailID"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      Address:
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      &nbsp;<asp:TextBox ID="txtCustomerAddress" runat="server" Width="227px" Height="81px"
+                                                          TextMode="MultiLine"></asp:TextBox>                                                    
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCustomerAddress"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      Total Products:
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="center">
+                                                      &nbsp;<asp:TextBox ID="txtTotalProducts" runat="server" ReadOnly="true" Width="231px"></asp:TextBox>                                                    
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtTotalProducts"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      Total Price:
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td>
+                                                      <asp:TextBox ID="txtTotalPrice" runat="server" ReadOnly="true" Width="231px"></asp:TextBox>                                                    
+                                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtTotalPrice"
+                                                          ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      Payment Mode:
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td align="left">
+                                                      <asp:RadioButtonList ID="rblPaymentMethod" runat="server">
+                                                          <asp:ListItem Value="1" Selected="True">1.Cash on Delivery</asp:ListItem>
+                                                          <asp:ListItem Value="2">2. Payment Gateway</asp:ListItem>
+                                                      </asp:RadioButtonList>
+                                                  </td>
+                                              </tr>
+                                               <tr>
+                                                  <td>
+                                                      <br />
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>
+                                                      <asp:Button ID="btnPlaceOrder" runat="server" OnClick="btnPlaceOrder_Click" Style="font-weight: 700"
+                                                          Text="PlaceOrder" Width="90px" />                                            
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>
+                                                      <asp:RegularExpressionValidator ID="RegualarExpressionValidator1" runat="server" ControlToValidate="txtCustomerEmailID"
+                                                          ErrorMessage="Please Enter Valid EmailID" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                                   </td>
                                               </tr>
                                           </table>

@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Shop.Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -52,10 +51,8 @@
                 <table align="center" class="style1">
                     <tr>
                         <td>
-
                             <table align="center" class="style1" style="border-bottom-style: ridge; border-width: medium;
                                border-color: #9933FF">
-
                     <tr>
                         <td class="style8" align="center" rowspan="2">
                             <asp:Image ID="Image1" runat="server" Height="53px" ImageUrl="~/Images/ShopCartProject.png"
@@ -70,13 +67,11 @@
                         </td>
                         <td class="style7" rowspan="2">
                             <asp:Image ID="Image3" runat="server" Height="67px" ImageUrl="~/Images/shoppingcart.png"
-                            Width="282px" />
-                           
+                            Width="282px" />                           
                         </td>
                          <td rowspan="2" align="right">
                             <asp:Image ID="Image2" runat="server" Height="53px" ImageUrl="~/Images/shopping-cart-icon.png"
-                            Width="70px" />
-                           
+                            Width="70px" />                     
                         </td>
                          <td align="left">
                             <asp:LinkButton ID="btnShoppingHeart" runat="server" Font-Underline="False" Font-Size="20pt" 
@@ -91,7 +86,6 @@
                    </table>
                    </td>
                    </tr>
-
                     <tr>
                         <td>
                             <table align="center" class="style1" style="border: thin ridge  #9900FF">
@@ -108,7 +102,6 @@
                             </table>
                         </td>
                     </tr>
-
                     <tr>
                       <td>
                           <table align="center" class="style1">
@@ -134,12 +127,12 @@
                                                     </tr>
                                                      <tr>
                                                          <td>
-                                                             Price:<asp:Label ID="lblPrice" runat="server" Text="<%# Bind("Price") %>"></asp:Label>
+                                                             Price:<asp:Label ID="lblPrice" runat="server" Text="<%# Bind('Price') %>"></asp:Label>
                                                          </td>
                                                      </tr>
                                                      <tr>
                                                          <td>
-                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument="<%# Bind("ProductID") %>"
+                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument="<%# Bind('ProductID') %>"
                                                          OnClick="btnAddToCart_Click" Text="Add To Cart" Width="100%" BorderColor="Black"
                                                          BorderStyle="Inset" BorderWidth="1px" />
                                                         </td>
@@ -152,8 +145,6 @@
                                       <asp:Panel ID="pnlMyCart" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
                                          BorderStyle="Inset" BorderWidth="1px" Visible="false">
                                           <table align="center" cellspacing="1">
-                                        </asp:Panel>
-
                                               <tr>
                                                   <td align="center">
                                                       <asp:DataList ID="dlCartProducts" runat="server" RepeatColumns="3" Font-Bold="false"
@@ -164,8 +155,7 @@
                                                         <table cellspacing="1" style="border: 1px ridge #9900FF; text-align: center; width: 172px;"
                                                             <tr>
                                                                 <td style="border-bottom-style: ridge; border-width: 1px; border-color: #000000">
-                                                                <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("Name") %>' Style="font-weight: 700"></asp:Label>
-                                                                    
+                                                                <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("Name") %>' Style="font-weight: 700"></asp:Label>                                                                  
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -186,11 +176,12 @@
                                                                 OnClick="btnRemoveFromCart_Click" />
                                                         </td>
                                                         </tr>
+                                                            </table>
                                                     </div>
                                                 </ItemTemplate>
-                                                  </td>
-                                              </tr>                               
-                                          </td>               
+                                               </asp:DataList> 
+                                         </asp:Panel>  
+                                   </td>            
                                   <td class="style3" valign="top" align="center">
                                       <asp:Panel ID="pnlCategories" runat="server" ScrollBars="Auto" Heigh="500px" BorderColor="Black"
                                      BorderStyle="Inset" BorderWidth="1px">
@@ -200,13 +191,22 @@
                                      <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                      <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                                      <ItemTemplate>
-                                         <asp:LinkButton ID="lbtnCategory runat="server" Text="<%# Bind('CategoryName') %>"
+                                         <asp:LinkButton ID="lbtnCategory" runat="server" Text="<%# Bind('CategoryName') %>"
                                          OnClick="lbtnCategory_Click" CommandArgument="<%# Bind('CategoryID') %>"></asp:LinkButton>
                                      </ItemTemplate>
                                          <SelectedItemStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                     </asp:DataList>
-                                    </asp:Panel>
-                                   
+                                    </asp:Panel>  
+                                      <asp:Panel ID="pnlCheckOut" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
+                                          BorderStyle="Inset" BorderWidth="1px" Visible="false">
+                                          <table style="width: 258px;">
+                                              <tr>
+                                                  <td align="left">
+                                                      Name:
+                                                  </td>
+                                              </tr>
+                                          </table>
+                                      </asp:Panel>                              
                                   </td>
                               </tr>
                               <tr>
@@ -220,8 +220,6 @@
                 </tr>
                 </table>
             </ContentTemplate>
-
-
         </asp:UpdatePanel>
     </form>
 </body>

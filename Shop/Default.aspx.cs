@@ -110,8 +110,37 @@ namespace Shop
 
             }
 
-            //HighlightCartProducts();
+            HighlightCartProducts();
         }
+
+        private void HighlightCartProducts()
+        {
+            if (Session["ShopAdministrator"] != null)
+            {
+                DataTable dtProductAddedToCart = (DataTable)Session["ShopAdministrator"];
+                if (dtProductAddedToCart.Rows.Count > 0)
+                {
+                    foreach(DataListItem item in dlProducts.Items)
+                    {
+                        HiddenField hfProductID = item.FindControl("hfProductID") as HiddenField;
+                        if (dtProductAddedToCart.AsEnumerable().Any(row => hfProductID.Value == row.Field<String>("ProductID")))
+                        {
+                            //item.BackColor = System.Drawing.Color.Red;
+
+                            Button btnAddToCart = item.FindControl("btnAddToCart") as Button;
+                            btnAddToCart.BackColor = System.Drawing.Color.Green;
+                            btnAddToCart.Text = "Added to Cart";
+
+                            Image imgGreenStar = item.FindControl("imgStar") as Image;
+                            imgGreenStar.Visible = true;
+
+                        }
+                                
+                    }
+                }
+            }
+        }
+
 
         protected void lbtnCategory_Click(object sender, EventArgs e)
         {

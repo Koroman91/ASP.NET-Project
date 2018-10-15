@@ -54,10 +54,33 @@ namespace Shop.BusinessLayer
             DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_AddNewProduct", parameters);
         }
 
+        internal DataTable SaveCustomerDetails()
+        {
+            SqlParameter[] parameters = new SqlParameter[7];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@CustomerName", CustomerName, System.Data.SqlDbType.VarChar, 100);
+            parameters[1] = DataLayer.DataAccess.AddParameter("@CustomerEmailID", CustomerEmailID, System.Data.SqlDbType.VarChar, 100);
+            parameters[2] = DataLayer.DataAccess.AddParameter("@CustomerPhoneNo", CustomerPhoneNo, System.Data.SqlDbType.VarChar, 10);
+            parameters[3] = DataLayer.DataAccess.AddParameter("@CustomerAddress", CustomerAddress, System.Data.SqlDbType.VarChar, 500);
+            parameters[4] = DataLayer.DataAccess.AddParameter("@TotalProducts", TotalProducts, System.Data.SqlDbType.Int, 100);
+            parameters[5] = DataLayer.DataAccess.AddParameter("@TotalPrice", TotalPrice, System.Data.SqlDbType.Int, 100);
+            parameters[5] = DataLayer.DataAccess.AddParameter("@PaymentMethod", PaymentMethod, System.Data.SqlDbType.VarChar, 100);
+
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_CustomerDetails", parameters);
+        }
+
+        public DataTable GetAllProducts()
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@CategoryID", CategoryID, System.Data.SqlDbType.Int, 20);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllProducts", parameters);
+            return dt;
+        }
+
+
         public DataTable GetAllCategories()
         {
             SqlParameter[] parameters = new SqlParameter[1];
-            //parameters[0] = DataLayer.DataAccess.AddParameter("@CtegoryID", )
+            parameters[0] = DataLayer.DataAccess.AddParameter("@CtegoryID", CategoryID, System.Data.SqlDbType.Int, 20);
             DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
             return dt;
         }

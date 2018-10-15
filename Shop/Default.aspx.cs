@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Shop.BusinessLayer;
 using System.Web.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Shop
 {
@@ -15,13 +16,15 @@ namespace Shop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblCategoryName.Text = "Popular Products";
+            
 
             if (!IsPostBack)
             {
+                lblCategoryName.Text = "Popular Products";
                 GetCategory();
                 GetProducts(0);
             }
+            lblAvailableStockAlert.Text = string.Empty;
         }
 
         private void GetCategory()
@@ -48,22 +51,66 @@ namespace Shop
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             string ProductID = Convert.ToInt16((((Button)sender).CommandArgument)).ToString();
+            string ProductQuantity = "1";
 
-           if (Session["ShopAdministrator"] != null)
+            DataListItem currentItem = (sender as Button).NamingContainer as DataListItem;
+            Label lblAvailableStock = currentItem.FindControl("lblAvailableStock") as Label;
+
+            if (Session["ShopAdministrator"] != null)
             {
                 DataTable dt = (DataTable)Session["ShopAdministrator"];
-                dt.Rows.Add(ProductID);
-                Session["ShopAdministrator"] = dt;
-                btnShoppingHeart.Text = dt.Rows.Count.ToString();
+                var checkProduct = dt.AsEnumerable().Where(r => r.Field<string>("ProductID") == ProductID);
+                if (checkProduct.Count() == 0)
+                {
+                    string query = "select * from Products where ProductID = " + ProductID + "";
+                    DataTable dtProducts = GetData(query);
+
+
+                    DataRow dr = dt.NewRow();
+                    dr["ProductID"] = ProductID;
+                    dr["Name"] = Convert.ToString(dtProducts.Rows[0]["Name"]);
+                    dr["Description"] = Convert.ToString(dtProducts.Rows[0]["Description"]);
+                    dr["Price"] = Convert.ToString(dtProducts.Rows[0]["Price"]);
+                    dr["ImageUrl"] = Convert.ToString(dtProducts.Rows[0]["ImageUrl"]);
+                    dr["ProductQuantity"] = ProductQuantity;
+                    dr["AvailableStock"] = lblAvailableStock.Text;
+                    dt.Rows.Add(dr);
+
+                    Session["ShopAdministrator"] = dt;
+                    btnShoppingHeart.Text = dt.Rows.Count.ToString();
+                }
             }
             else
             {
+                string query = "select * from Products where ProductID = " + ProductID + "";
+                DataTable dtProducts = GetData(query);
                 DataTable dt = new DataTable();
+
                 dt.Columns.Add("ProductID", typeof(string));
-                dt.Rows.Add(ProductID);
+                dt.Columns.Add("Name", typeof(string));
+                dt.Columns.Add("Description", typeof(string));
+                dt.Columns.Add("Price", typeof(string));
+                dt.Columns.Add("ImageUrl", typeof(string));
+                dt.Columns.Add("ProductQuantity", typeof(string));
+                dt.Columns.Add("AvailableStock", typeof(string));
+
+                DataRow dr = dt.NewRow();
+
+                dr["ProductID"] = ProductID;
+                dr["Name"] = Convert.ToString(dtProducts.Rows[0]["Name"]);
+                dr["Description"] = Convert.ToString(dtProducts.Rows[0]["Description"]);
+                dr["Price"] = Convert.ToString(dtProducts.Rows[0]["Price"]);
+                dr["ImageUrl"] = Convert.ToString(dtProducts.Rows[0]["ImageUrl"]);
+                dr["ProductQuantity"] = ProductQuantity;
+                dr["AvailableStock"] = lblAvailableStock.Text;
+                dt.Rows.Add(dr);
+
                 Session["ShopAdministrator"] = dt;
                 btnShoppingHeart.Text = dt.Rows.Count.ToString();
+
             }
+
+            //HighlightCartProducts();
         }
 
         protected void lbtnCategory_Click(object sender, EventArgs e)
@@ -72,7 +119,7 @@ namespace Shop
             pnlProducts.Visible = true;
             int CategoryID = Convert.ToInt16((((LinkButton)sender).CommandArgument));
             GetProducts(CategoryID);
-            HighlightCartProducts();
+            //HighlightCartProducts();
         }
 
         protected void btnShoppingHeart_Click(object sender, EventArgs e)
@@ -191,6 +238,34 @@ namespace Shop
             }
             txtTotalPrice.Text = Convert.ToString(TotalPrice);
             txtTotalProducts.Text = Convert.ToString(TotalProducts);
+        }
+
+        protected void lblLogo_Click(object sender, EventArgs e)
+        {
+            lblCategoryName.Text = "Popular Products At Shop";
+            lblProducts.Text = "Products";
+            pnlMyCart.Visible = false;
+            pnlCheckOut.Visible = false;
+            pnlCategories.Visible = true;
+            pnlProducts.Visible = true;
+
+            GetProducts(0);
+
+        }
+
+        protected void btnRemoveFromCart_Click(object sender, EventArgs e)
+        {
+            if (Session["ShopAdministrator"] !=null)
+            {
+                DataTable dt = (DataTable)Session["ShopAdministrator"];
+
+                DataRow drr = dt.Select("ProductID=" + ProductID + " ").FirstOrDefault();
+
+                if (drr != null)
+                    dt.Rows.Remove(drr);
+                Session["ShopAdministrator"] = dt;
+            }
+            GetMyCart();
         }
     }
 }

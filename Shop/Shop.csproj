@@ -60,7 +60,9 @@
   <ItemGroup>
     <Content Include="Administrator\AddEditCategory.aspx" />
     <Content Include="Administrator\AddNewProducts.aspx" />
+    <Content Include="Administrator\Category.aspx" />
     <Content Include="Administrator\Login.aspx" />
+    <Content Include="Administrator\Products.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Images\adminicon1.png" />
     <Content Include="Images\EmptyShoppingCart.jpg" />
@@ -70,6 +72,7 @@
     <Content Include="Images\shopping-cart-icon.png" />
     <Content Include="Images\shoppingcart.png" />
     <Content Include="Images\Star.png" />
+    <Content Include="OrderTemplate.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -94,12 +97,26 @@
     <Compile Include="Administrator\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Category.aspx.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\Category.aspx.designer.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Administrator\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="BusinessLayer\ShoppingCart.cs" />
     <Compile Include="DataLayer\DataAccess.cs" />
@@ -110,6 +127,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -416,5 +416,30 @@ namespace Shop
                 txtTotalProducts.Text = "0";
             }
         }
+
+        private string PopulateOrderEmailBody(string customerName, string transactionNo)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/OrderTemplate.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            body = body.Replace("{CustomerName}", customerName);
+            body = body.Replace("{OrderNo}", transactionNo);
+            body = body.Replace("{TransactionURL}", "http://www.ShoppingHeart.com?TrackYourOrder,aspxId=" + transactionNo);
+            return body;
+        }
+
+
+
+        private void SendOrderPlaceAlert(string CustomerName, string CustomerEmailID, string TransactionNo)
+        {
+            
+                string body = this.PopulateOrderEmailBody(CustomerName, TransactionNo);
+
+            EmailEngine.SendEmail(CustomerEmailID, "Shopping -- Your OrderDetails", body);               
+        }
+
     }
 }

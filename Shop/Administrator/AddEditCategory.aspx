@@ -7,7 +7,7 @@
         <hr />
     </div>
 
-    <table align="center" cellspacing="1" style="width: 100%; beckground-color: #FFFFFF;">
+    <table align="center" cellspacing="1" style="width: 100%; background-color: #FFFFFF;">
         <tr>
             <td style="width: 50%; padding-left: 100px;" align="left">
                 Category Name :

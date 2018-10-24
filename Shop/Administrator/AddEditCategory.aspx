@@ -3,10 +3,10 @@
 
     <div align="center">
         <h4>
-            Add New Category</h4>
+            Add New Category
+        </h4>
         <hr />
     </div>
-
     <table align="center" cellspacing="1" style="width: 100%; background-color: #FFFFFF;">
         <tr>
             <td style="width: 50%; padding-left: 100px;" align="left">
@@ -26,22 +26,20 @@
             </td>
         </tr>
         <tr>
-
-            <td style="width: 50%; align="right">
+            <td style="width: 50%;" align="right">
                 &nbsp;
             </td>
-            <td style="width: 50%; align="left">
+            <td style="width: 50%;" align="left">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td style="width: 50%; align="right">
+            <td style="width: 50%;" align="right">
                 &nbsp;
             </td>
->           <td style="width: 50%; align="left">
+>           <td style="width: 50%;" align="left">
                 &nbsp;
             </td>
         </tr>
         </table>
-
 </asp:Content>

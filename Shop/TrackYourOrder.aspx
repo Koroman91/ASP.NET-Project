@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-            <uc1:ucCustomerOrder ID="ucCustomerOrder1" runat="server" />
+        <uc1:ucCustomerOrder ID="ucCustomerOrder1" runat="server" />
     </div>
     </form>
 </body>

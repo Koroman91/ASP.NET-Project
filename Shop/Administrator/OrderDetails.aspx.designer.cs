@@ -37,6 +37,6 @@ namespace Shop.Administrator {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Shop.usCustomerOrder ucCustomerOrder1;
+        protected global::Shop.ucCustomerOrder ucCustomerOrder1;
     }
 }

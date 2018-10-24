@@ -13,7 +13,7 @@ namespace Shop.Administrator
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
-                string Transaction = Request.QueryString["Id"];
+                string TransactionNo = Request.QueryString["Id"];
 
                 ucCustomerOrder1.TransactionNoText = TransactionNo;
             }

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Shop.BusinessLayer;
-using System.Data;
+
 
 namespace Shop
 {
@@ -15,7 +14,7 @@ namespace Shop
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
-                string Transaction = Request.QueryString["Id"];
+                string TransactionNo = Request.QueryString["Id"];
 
                 ucCustomerOrder1.TransactionNoText = TransactionNo;
             }

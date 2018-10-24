@@ -258,7 +258,7 @@ namespace Shop
         public DataTable GetData(string query)
         {
             DataTable dt = new DataTable();
-            string Conn = WebConfigurationManager.ConnectionStrings["ShopAdministrator"].ConnectionString;
+            string Conn = WebConfigurationManager.ConnectionStrings["StefanConnection"].ConnectionString;
             SqlConnection con = new SqlConnection(Conn);
             con.Open();
 

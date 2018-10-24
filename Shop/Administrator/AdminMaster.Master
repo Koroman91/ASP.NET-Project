@@ -30,10 +30,6 @@
                  Shopping!!!
          </td>       
              <td align="center">
-                 <div style="text-align: right;">
-                     <asp:LinkButton ID="lbtnLogout" runat="server" Text="Logout"
-                         CauseValidation="False" onClick="lbtnLogout_Click"></asp:LinkButton>
-                 </div>
               <asp:Image ID="Image2" runat="server" Height="81px" ImageUrl="~/Images/adminicon1.png"
                   Width="109px" />
                 </td>
@@ -70,7 +66,7 @@
              </td>
          </tr>
          <tr>
-             <td coslpan="2" align="center">
+             <td colspan="2" align="center">
                  &nbsp;&copy; Stefan Korolija
              </td>
          </tr>

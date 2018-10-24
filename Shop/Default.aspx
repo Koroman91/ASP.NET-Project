@@ -159,7 +159,7 @@
                                                         Width="551px" OnSelectedIndexChanged="dlCartProducts_SelectedIndexChanged">
                                                 <ItemTemplate>
                                                     <div align="left">
-                                                        <table cellspacing="1" style="border: 1px ridge #9900FF; text-align: center; width: 172px;"
+                                                        <table cellspacing="1" style="border: 1px ridge #9900FF; text-align: center; width: 172px;">
                                                             <tr>
                                                                 <td style="border-bottom-style: ridge; border-width: 1px; border-color: #000000">
                                                                 <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("Name") %>' Style="font-weight: 700"></asp:Label>                                                                  

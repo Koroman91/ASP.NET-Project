@@ -66,7 +66,20 @@ namespace Shop.BusinessLayer
             parameters[5] = DataLayer.DataAccess.AddParameter("@PaymentMethod", PaymentMethod, System.Data.SqlDbType.VarChar, 100);
 
             DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_CustomerDetails", parameters);
+
+            return dt;
         }
+
+        internal DataTable GetOrdersList()
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@Flag", Flag, System.Data.SqlDbType.Int, 20);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetOrdersList", parameters);
+            return dt;
+        }
+
+
+
 
         public DataTable GetAllProducts()
         {
@@ -91,5 +104,51 @@ namespace Shop.BusinessLayer
             DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
             return dt;
         }
+
+        internal DataTable GetTransactionDetails()
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@TransactionNo", Flag, System.Data.SqlDbType.Int, 20);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetTransactionDetails", parameters);
+            return dt;
+        }
+
+        internal DataTable GetSetOrderStatus()
+        {
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@TransactionNo", Convert.ToInt32(OrderNo), System.Data.SqlDbType.Int, 20);
+            parameters[1] = DataLayer.DataAccess.AddParameter("@OrderStatus", OrderStatus, System.Data.SqlDbType.VarChar, 300);
+            parameters[2] = DataLayer.DataAccess.AddParameter("@Flag", Flag, System.Data.SqlDbType.Int, 10);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_OrderStatus", parameters);
+            return dt;
+        }
+
+        internal void SaveCustomerProducts()
+        {
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@CustomerID", CustomerID, System.Data.SqlDbType.Int, 20);
+            parameters[1] = DataLayer.DataAccess.AddParameter("@ProductID", ProductID, System.Data.SqlDbType.Int, 20);
+            parameters[2] = DataLayer.DataAccess.AddParameter("@TotalProduct", TotalProducts, System.Data.SqlDbType.Int, 10);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_SaveCustomerProducts", parameters);
+            
+        }
+
+        internal DataTable GetAvailableStock()
+        {
+            SqlParameter[] parameters = new SqlParameter[2];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@StockType", StockType, System.Data.SqlDbType.Int, 10);
+            parameters[1] = DataLayer.DataAccess.AddParameter("@CategoryID", CategoryID, System.Data.SqlDbType.Int, 10);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAvailableStock", parameters);
+            return dt;
+        }
+
+        internal DataTable GetIncomeReport()
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = DataLayer.DataAccess.AddParameter("@ReportType", Flag, System.Data.SqlDbType.Int, 10);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetIncomeReport", parameters);
+            return dt;
+        }
+
     }
 }

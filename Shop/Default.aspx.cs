@@ -10,13 +10,14 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 
+
 namespace Shop
 {
     public partial class Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (!IsPostBack)
             {
@@ -47,7 +48,7 @@ namespace Shop
             dlProducts.DataBind();
 
         }
-  
+
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             string ProductID = Convert.ToInt16((((Button)sender).CommandArgument)).ToString();
@@ -120,7 +121,7 @@ namespace Shop
                 DataTable dtProductAddedToCart = (DataTable)Session["ShopAdministrator"];
                 if (dtProductAddedToCart.Rows.Count > 0)
                 {
-                    foreach(DataListItem item in dlProducts.Items)
+                    foreach (DataListItem item in dlProducts.Items)
                     {
                         HiddenField hfProductID = item.FindControl("hfProductID") as HiddenField;
                         if (dtProductAddedToCart.AsEnumerable().Any(row => hfProductID.Value == row.Field<String>("ProductID")))
@@ -135,7 +136,7 @@ namespace Shop
                             imgGreenStar.Visible = true;
 
                         }
-                                
+
                     }
                 }
             }
@@ -148,7 +149,7 @@ namespace Shop
             pnlProducts.Visible = true;
             int CategoryID = Convert.ToInt16((((LinkButton)sender).CommandArgument));
             GetProducts(CategoryID);
-            //HighlightCartProducts();
+            HighlightCartProducts();
         }
 
         protected void btnShoppingHeart_Click(object sender, EventArgs e)
@@ -164,36 +165,93 @@ namespace Shop
 
         private void GetMyCart()
         {
-            string productids = string.Empty;
-            DataTable dt = (DataTable)Session["ShopAdministrator"];
 
-            for (int i=0; i <dt.Rows.Count; i++)
-            {
-                if (i == 0 || dt.Rows.Count == 1)
-                {
-                    productids = productids + dt.Rows[i]["ProductID"].ToString();
-                }
-                else
-                {
-                    productids = productids + "," + dt.Rows[i]["ProductID"].ToString();
-                }
-            }
+            DataTable dtProducts;
 
-            productids = "(" + productids + ")";
-            if (dt.Rows.Count > 0)
+            if (Session["ShopAdministrator"] != null)
             {
-                string query = "select * from Products where ProductId in " + productids + "";
-                DataTable dtProducts = GetData(query);
-                lblTotalProducts.Text = dtProducts.Rows.Count.ToString();
-                dlCartProducts.DataSource = dtProducts;
-                dlCartProducts.DataBind();
+                dtProducts = (DataTable)Session["ShopAdministrator"];
+
             }
             else
             {
+                dtProducts = new DataTable();
+            }
+
+            if (dtProducts.Rows.Count > 0)
+            {
+                txtTotalProducts.Text = dtProducts.Rows.Count.ToString();
+                btnShoppingHeart.Text = dtProducts.Rows.Count.ToString();
+                dlCartProducts.DataSource = dtProducts;
+                dlCartProducts.DataBind();
+                UpdateTotalBill();
+
+                pnlMyCart.Visible = true;
+                pnlCheckOut.Visible = true;
+                pnlEmptyCart.Visible = false;
+                pnlCategories.Visible = false;
+                pnlProducts.Visible = false;
+                pnlOrderPlacedSuccessfully.Visible = false;
+            }
+            else
+            {
+                pnlEmptyCart.Visible = true;
+                pnlMyCart.Visible = false;
+                pnlCheckOut.Visible = false;
+                pnlCategories.Visible = false;
+                pnlProducts.Visible = false;
+                pnlOrderPlacedSuccessfully.Visible = false;
+
                 dlCartProducts.DataSource = null;
                 dlCartProducts.DataBind();
-                lblTotalProducts.Text = "0";
+                txtTotalProducts.Text = "0";
+                txtTotalPrice.Text = "0";
+                btnShoppingHeart.Text = "0";
+
+
             }
+
+
+
+
+
+
+
+
+
+
+
+            /*   string productids = string.Empty;
+               DataTable dt = (DataTable)Session["ShopAdministrator"];
+
+               for (int i=0; i <dt.Rows.Count; i++)
+               {
+                   if (i == 0 || dt.Rows.Count == 1)
+                   {
+                       productids = productids + dt.Rows[i]["ProductID"].ToString();
+                   }
+                   else
+                   {
+                       productids = productids + "," + dt.Rows[i]["ProductID"].ToString();
+                   }
+               }
+
+               productids = "(" + productids + ")";
+               if (dt.Rows.Count > 0)
+               {
+                   string query = "select * from Products where ProductId in " + productids + "";
+                   DataTable dtProducts = GetData(query);
+                   lblTotalProducts.Text = dtProducts.Rows.Count.ToString();
+                   dlCartProducts.DataSource = dtProducts;
+                   dlCartProducts.DataBind();
+               }
+               else
+               {
+                   dlCartProducts.DataSource = null;
+                   dlCartProducts.DataBind();
+                   lblTotalProducts.Text = "0";
+               }
+               */
 
         }
 
@@ -231,7 +289,7 @@ namespace Shop
             }
             else
             {
-                if (Session["ShopAdministrator"] !=null )
+                if (Session["ShopAdministrator"] != null)
                 {
                     if (Convert.ToInt32(txtQuantity.Text) <= Convert.ToInt32(lblAvailableStock.Text))
                     {
@@ -273,18 +331,25 @@ namespace Shop
         {
             lblCategoryName.Text = "Popular Products At Shop";
             lblProducts.Text = "Products";
+
+
+
             pnlMyCart.Visible = false;
             pnlCheckOut.Visible = false;
             pnlCategories.Visible = true;
             pnlProducts.Visible = true;
+            pnlEmptyCart.Visible = true;
+            pnlOrderPlacedSuccessfully.Visible = false;
 
             GetProducts(0);
+            HighlightCartProducts();
 
         }
 
         protected void btnRemoveFromCart_Click(object sender, EventArgs e)
         {
-            if (Session["ShopAdministrator"] !=null)
+            string ProductID = Convert.ToInt16((((Button)sender).CommandArgument)).ToString();
+            if (Session["ShopAdministrator"] != null)
             {
                 DataTable dt = (DataTable)Session["ShopAdministrator"];
 
@@ -295,6 +360,61 @@ namespace Shop
                 Session["ShopAdministrator"] = dt;
             }
             GetMyCart();
+        }
+
+        protected void btnPlaceOrder_Click(object sender, EventArgs e)
+        {
+            string productids = string.Empty;
+            DataTable dt;
+            if (Session["ShopAdministrator"] != null)
+            {
+                dt = (DataTable)Session["ShopAdministrator"];
+
+                ShoppingCart k = new ShoppingCart()
+                {
+                    CustomerName = txtCustomerName.Text,
+                    CustomerEmailID = txtCustomerEmailID.Text,
+                    CustomerAddress = txtCustomerAddress.Text,
+                    CustomerPhoneNo = txtCustomerPhoneNo.Text,
+                    TotalProducts = Convert.ToInt32(txtTotalProducts.Text),
+                    TotalPrice = Convert.ToInt32(txtTotalPrice.Text),
+                    ProductList = productids,
+                    PaymentMethod = rblPaymentMethod.SelectedItem.Text
+                };
+
+                DataTable dtResult = k.SaveCustomerDetails();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ShoppingCart SaveProducts = new ShoppingCart()
+                    {
+                        CustomerID = Convert.ToInt32(dtResult.Rows[0][0]),
+                        ProductID = Convert.ToInt32(dt.Rows[i]["ProductID"]),
+                        TotalProducts = Convert.ToInt32(dt.Rows[i]["ProductQuantity"])
+                    };
+                    SaveProducts.SaveCustomerProducts();
+                }
+
+                Session.Clear();
+                GetMyCart();
+
+                lblTransactioNo.Text = "Your Transaction Number: " + dtResult.Rows[0][0];
+
+                pnlOrderPlacedSuccessfully.Visible = true;
+                pnlCheckOut.Visible = false;
+                pnlCategories.Visible = false;
+                pnlMyCart.Visible = false;
+                pnlEmptyCart.Visible = false;
+                pnlProducts.Visible = false;
+                pnlEmptyCart.Visible = false;
+
+                txtCustomerAddress.Text = string.Empty;
+                txtCustomerEmailID.Text = string.Empty;
+                txtCustomerName.Text = string.Empty;
+                txtCustomerPhoneNo.Text = string.Empty;
+                txtTotalPrice.Text = "0";
+                txtTotalProducts.Text = "0";
+            }
         }
     }
 }

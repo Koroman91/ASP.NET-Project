@@ -61,8 +61,11 @@
     <Content Include="Administrator\AddEditCategory.aspx" />
     <Content Include="Administrator\AddNewProducts.aspx" />
     <Content Include="Administrator\Category.aspx" />
+    <Content Include="Administrator\CustomerOrders.aspx" />
+    <Content Include="Administrator\IncomeReport.aspx" />
     <Content Include="Administrator\Login.aspx" />
     <Content Include="Administrator\Products.aspx" />
+    <Content Include="Administrator\ProductStock.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Images\adminicon1.png" />
     <Content Include="Images\EmptyShoppingCart.jpg" />
@@ -104,6 +107,20 @@
     <Compile Include="Administrator\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\CustomerOrders.aspx.cs">
+      <DependentUpon>CustomerOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\CustomerOrders.aspx.designer.cs">
+      <DependentUpon>CustomerOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\IncomeReport.aspx.cs">
+      <DependentUpon>IncomeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\IncomeReport.aspx.designer.cs">
+      <DependentUpon>IncomeReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -117,6 +134,13 @@
     </Compile>
     <Compile Include="Administrator\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\ProductStock.aspx.cs">
+      <DependentUpon>ProductStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\ProductStock.aspx.designer.cs">
+      <DependentUpon>ProductStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="BusinessLayer\ShoppingCart.cs" />
     <Compile Include="DataLayer\DataAccess.cs" />

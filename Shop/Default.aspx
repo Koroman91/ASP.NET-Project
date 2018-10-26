@@ -231,7 +231,7 @@
                                           <table style="width: 258px;">
                                               <tr>
                                                   <td align="left">
-                                                      Name;
+                                                      Name:
                                                   </td>
                                               </tr>
                                               <tr>
@@ -255,7 +255,7 @@
                                               </tr>
                                               <tr>
                                                   <td align="left">
-                                                      EmailID:
+                                                      EmailID
                                                   </td>
                                               </tr>
                                                <tr>
@@ -267,7 +267,7 @@
                                               </tr>
                                                <tr>
                                                   <td align="left">
-                                                      Address:
+                                                      Address
                                                   </td>
                                               </tr>
                                                <tr>

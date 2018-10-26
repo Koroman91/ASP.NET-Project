@@ -39,7 +39,6 @@
             width: 108px;
             text-align: center;
         }
-
     </style>
 </head>
 <body>
@@ -121,13 +120,13 @@
                                                      </tr>
                                                     <tr>
                                                         <td>
-                                                            <img alt="" src='<%# Bind("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
+                                                            <img alt="" src='<%# Eval("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
                                                             width: 173px; height: 160px;" />
                                                         </td>
                                                     </tr>
                                                      <tr>
                                                          <td>
-                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
                                                              <asp:Image ID="imgStar" runat="server" Visible="false" ImageUrl="~/Images/Star.png" />
                                                              Stock:&nbsp;
                                                              <asp:Label ID="lblAvailableStock" runat="server" Text='<%# Eval("AvailableStock") %>'
@@ -137,7 +136,7 @@
                                                      </tr>
                                                      <tr>
                                                          <td>
-                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument='<%# Bind("ProductID") %>'
+                                                         <asp:Button ID="btnAddToCart" runat="server" CommandArgument='<%# Eval("ProductID") %>'
                                                          OnClick="btnAddToCart_Click" Text="Add To Cart" Width="100%" BorderColor="Black"
                                                          BorderStyle="Inset" BorderWidth="1px" CausesValidation="false" />
                                                         </td>
@@ -167,7 +166,7 @@
                                                             </tr>
                                                             <tr>
                                                         <td>
-                                                            <img alt="" src='<%# Bind("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
+                                                            <img alt="" src='<%# Eval("ImageUrl") %>' runat="server" id="imgProductPhoto" style="border: ridge 1px black;
                                                             width: 157px; height: 130px;" />
                                                         </td>
                                                     </tr>
@@ -179,7 +178,7 @@
                                                              <br />
                                                              Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
                                                              &nbsp;x&nbsp;
-                                                             <asp:TextBox ID="txtProductQuantity" runat="server" Width="10px" Height="10px" MaxLength="1"
+                                                             <asp:TextBox ID="txtProductQuantity_TextChanged" runat="server" Width="10px" Height="10px" MaxLength="1"
                                                                  OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true" Text='<%# Eval("ProductQuantity")%>'></asp:TextBox>
                                                              <asp:HiddenField ID="hfProductID" runat="server" Value='<%# Eval("ProductID") %>' />
                                                          </td>
@@ -195,7 +194,11 @@
                                                             </table>
                                                     </div>
                                                 </ItemTemplate>
+                                                  <ItemStyle Width="33%"/>
                                                </asp:DataList> 
+                                                      </td>
+                                                  </tr>
+                                            </table>
                                          </asp:Panel>  
                                    </td>            
                                   <td class="style3" valign="top" align="center">
@@ -205,11 +208,10 @@
                                      BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"
                                      Width="252px">
                                      <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                     <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                         <ItemStyle BackColor="#DEDFDE" ForeColor="Black" />
+                                     <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />                                         
                                      <ItemTemplate>
-                                         <asp:LinkButton ID="lbtnCategory" runat="server" Text='<%# Bind("CategoryName") %>'
-                                         OnClick="lbtnCategory_Click" CommandArgument='<%# Bind("CategoryID") %>'></asp:LinkButton>
+                                         <asp:LinkButton ID="lbtnCategory" runat="server" Text='<%# Eval("CategoryName") %>'
+                                         OnClick="lbtnCategory_Click" CommandArgument='<%# Eval("CategoryID") %>'></asp:LinkButton>
                                      </ItemTemplate>
                                          <SelectedItemStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                                     </asp:DataList>
@@ -365,8 +367,8 @@
                               </tr>
                               <tr>
                                   <td colspan="2" align="center" style="border: thin ridge #9900FF">
-                                      &nbsp;&copy; <a href="">Stefan Korolija</a>
-                                      || <a href="Admin/Login.aspx" target="_blank">AdminPanel</a> || <a href="TrackYourOrder.aspx" target="_blank">TrackOrderStatus</a>
+                                      &nbsp;&copy; <a href="http://20Fingers2Brains.Blogspot.com">Stefan Korolija</a>
+                                      || <a href="Administrator/Login.aspx" target="_blank">AdminPanel</a> || <a href="TrackYourOrder.aspx" target="_blank">TrackOrderStatus</a>
                                   </td>
                               </tr>
                           </table>

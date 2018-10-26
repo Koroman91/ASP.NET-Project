@@ -29,7 +29,7 @@
                 Product Category :
             </td>
             <td style="width: 50%;" align="left">
-                <asp:DropDownList ID="ddlCategory" runat="server" Width="212px">
+                <asp:DropDownList ID="ddlCategory" runat="server" Width="212px" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
         </tr>

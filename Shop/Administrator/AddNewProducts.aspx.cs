@@ -53,10 +53,7 @@ namespace Shop.Administrator
             }
         }
 
-        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -119,11 +116,15 @@ namespace Shop.Administrator
                 }
             }
             }
-           
-      /*  public DataTable GetCategories()
-        {
-            SqlParameter[] parameters = new SqlParameter[0];
-            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
-        } */
+
+
+
+
+
+        /*  public DataTable GetCategories()
+          {
+              SqlParameter[] parameters = new SqlParameter[0];
+              DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
+          } */
     }
 }

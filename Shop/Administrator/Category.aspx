@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administrator/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Category.aspx.cs" Inherits="Shop.Administrator.Category" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div align="center">
         <asp:Label ID="lblTitle" runat="server" Style="font-weight: 700">All Categories</asp:Label>

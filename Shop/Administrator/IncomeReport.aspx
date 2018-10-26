@@ -8,28 +8,25 @@
     <table align="center" cellspacing="1" style="width: 100%; background-color: #FFFFFF;">
         <tr>
             <td align="center">
-                <asp:RadioButtonList ID="rblIncomeFilter" runat="server" AutoPostBack="true"
+                <asp:RadioButtonList ID="rblIncomeFilter" runat="server" AutoPostBack="True"
                     RepeatDirection="Horizontal"
-                    onSelectedindexchanged="rblIncomeFilter_SelectedIndexChanged">
+                    onselectedindexchanged="rblIncomeFilter_SelectedIndexChanged">
                     <asp:ListItem Selected="True" Value="1">Today</asp:ListItem>
-                    <asp:ListItem Value="2">Month</asp:ListItem>
+                    <asp:ListItem Value="2">This Month</asp:ListItem>
                     <asp:ListItem Value="3">This Year</asp:ListItem>
                 </asp:RadioButtonList>
                 </td>
         </tr>
-
         <tr>
              <td align="center">
                  &nbsp;</td>
         </tr>
-
         <tr>
-            <td aling="center">
+            <td align="center">
                 <asp:Label ID="lblIncome" runat="server" ForeColor="Red"
                     style="font-weight: 700"></asp:Label>
             </td>
         </tr>
- 
         <tr>
             <td align="center">
                 <asp:GridView ID="gvIncomeReport" runat="server" BackColor="White"
@@ -39,11 +36,11 @@
                     <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-Width="100" />
                     <asp:BoundField DataField="CustomerName" HeaderText="Name" ItemStyle-Width="150" />
                     <asp:BoundField DataField="CustomerPhoneNo" HeaderText="PhoneNo" ItemStyle-Width="20" />
-                    <asp:BoundField DataField="TotalProducts" HeaderText="products" ItemStyle-Width="150" />
+                    <asp:BoundField DataField="TotalProducts" HeaderText="Products" ItemStyle-Width="150" />
                     <asp:BoundField DataField="TotalPrice" HeaderText="Price" ItemStyle-Width="150" />                  
                 </Columns>
                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                <HeaderStyle BackColor="#4A3C8C" Font-Bold="true" ForeColor="#E7E7FF" />
+                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
                 <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Center" />
                 <RowStyle BackColor="#DEDFDE" ForeColor="Black" HorizontalAlign="Center"/>
                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />

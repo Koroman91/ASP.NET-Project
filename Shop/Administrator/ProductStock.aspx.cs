@@ -48,7 +48,7 @@ namespace Shop.Administrator
                 gvAvailableStock.DataSource = dt;
                 gvAvailableStock.DataBind();
                 gvAvailableStock.Visible = true;
-                gvAvailableStock.Visible = false;
+                NoRecordsToDisplay.Visible = false;
             }
             else
             {

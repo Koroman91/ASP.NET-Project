@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administrator/AdminMaster.Master" AutoEventWireup="true" CodeBehind="ProductStock.aspx.cs" Inherits="Shop.Administrator.ProductStock" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administrator/AdminMaster.Master" AutoEventWireup="true" CodeFile="ProductStock.aspx.cs" Inherits="Shop.Administrator.ProductStock" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div align="center">
@@ -36,7 +36,7 @@
                 BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3"
                 CellSpacing="1" GridLines="None" Width="100%" AutoGenerateColumns="false">
                 <Columns>
-                    <asp:BoundField DataField="Name" HeaderText="ProductName" ItemStyle-Width="100" />
+                    <asp:BoundField DataField="Name" HeaderText="ProductName" ItemStyle-Width="150" />
                     <asp:BoundField DataField="CategoryName" HeaderText="ProductCategory" ItemStyle-Width="50" />
                     <asp:BoundField DataField="AvailableStock" HeaderText="AvailableStock" ItemStyle-Width="150" 
                         ItemStyle-Font-Bold="true" ItemStyle-Font-Size="Larger" />

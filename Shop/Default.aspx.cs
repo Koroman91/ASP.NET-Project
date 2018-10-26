@@ -275,41 +275,7 @@ namespace Shop
 
         }
 
-        protected void txtProductQuantity_TextChanged(object seneder, EventArgs e)
-        {
-            TextBox txtQuantity = (sender as TextBox);
 
-            DataListItem currentItem = (sender as TextBox).NamingContainer as DataListItem;
-            HiddenField ProductID = currentItem.FindControl("hfProductID") as HiddenField;
-            Label lblAvailableStock = currentItem.FindControl("lblAvailableStock") as Label;
-
-            if (txtQuantity.Text == string.Empty || txtQuantity.Text == "0" || txtQuantity.Text == "1")
-            {
-                txtQuantity.Text = "1";
-            }
-            else
-            {
-                if (Session["ShopAdministrator"] != null)
-                {
-                    if (Convert.ToInt32(txtQuantity.Text) <= Convert.ToInt32(lblAvailableStock.Text))
-                    {
-                        DataTable dt = (DataTable)Session["ShopAdministrator"];
-                        DataRow[] rows = dt.Select("ProductID= '" + ProductID.Value + "'");
-                        int index = dt.Rows.IndexOf(rows[0]);
-
-                        dt.Rows[index]["ProductQuantity"] = txtQuantity.Text;
-
-                        Session["ShopAdministrator"] = dt;
-                    }
-                    else
-                    {
-                        lblAvailableStock.Text = "Alert : Product Buyout should not be Mote than AvailableStock!";
-                        txtQuantity.Text = "1";
-                    }
-                }
-            }
-            UpdateTotalBill();
-        }
 
         private void UpdateTotalBill()
         {
@@ -441,5 +407,42 @@ namespace Shop
             EmailEngine.SendEmail(CustomerEmailID, "Shopping -- Your OrderDetails", body);               
         }
 
+        protected void txtProductQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+            TextBox txtQuantity = (sender as TextBox);
+
+            DataListItem currentItem = (sender as TextBox).NamingContainer as DataListItem;
+            HiddenField ProductID = currentItem.FindControl("hfProductID") as HiddenField;
+            Label lblAvailableStock = currentItem.FindControl("lblAvailableStock") as Label;
+
+            if (txtQuantity.Text == string.Empty || txtQuantity.Text == "0" || txtQuantity.Text == "1")
+            {
+                txtQuantity.Text = "1";
+            }
+            else
+            {
+                if (Session["ShopAdministrator"] != null)
+                {
+                    if (Convert.ToInt32(txtQuantity.Text) <= Convert.ToInt32(lblAvailableStock.Text))
+                    {
+                        DataTable dt = (DataTable)Session["ShopAdministrator"];
+                        DataRow[] rows = dt.Select("ProductID= '" + ProductID.Value + "'");
+                        int index = dt.Rows.IndexOf(rows[0]);
+
+                        dt.Rows[index]["ProductQuantity"] = txtQuantity.Text;
+
+                        Session["ShopAdministrator"] = dt;
+                    }
+                    else
+                    {
+                        lblAvailableStock.Text = "Alert : Product Buyout should not be Mote than AvailableStock!";
+                        txtQuantity.Text = "1";
+                    }
+                }
+            }
+            UpdateTotalBill();
+        
+    }
     }
 }

@@ -109,7 +109,7 @@
                                       <asp:Panel ID="pnlProducts" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
                                     BorderStyle="Inset" BorderWidth="1px">
                                       <asp:DataList ID="dlProducts" runat="server" RepeatColumns="3" Width="600px" Font-Bold="False"
-                                        Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" OnSelectedIndexChanged="dlProducts_SelectedIndexChanged">
+                                        Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False">
                                          <ItemTemplate>
                                              <div align="left">
                                                  <table cellspacing="1" class="style4" style="border: 1px ridge #9900FF">
@@ -148,14 +148,14 @@
                                          </asp:DataList> 
                                          </asp:Panel> 
                                       <asp:Panel ID="pnlMyCart" runat="server" ScrollBars="Auto" Height="500px" BorderColor="Black"
-                                         BorderStyle="Inset" BorderWidth="1px" Visible="false">
+                                         BorderStyle="Inset" BorderWidth="1px" Visible="False">
                                           <table align="center" cellspacing="1">
                                               <tr>
                                                   <td align="center">
                                                       <asp:Label ID="lblAvailableStockAlert" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>
                                                       <asp:DataList ID="dlCartProducts" runat="server" RepeatColumns="3" Font-Bold="false"
-                                                        Font-Italic="false" Font-Overline="false" Font-Strikeout="false" Font-Underline="false"
-                                                        Width="551px" OnSelectedIndexChanged="dlCartProducts_SelectedIndexChanged">
+                                                        Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False"
+                                                        Width="551px">
                                                 <ItemTemplate>
                                                     <div align="left">
                                                         <table cellspacing="1" style="border: 1px ridge #9900FF; text-align: center; width: 172px;">
@@ -176,9 +176,9 @@
                                                              <asp:Label ID="lblAvailableStock" runat="server" Text='<%# Eval("AvailableStock") %>'
                                                                  ToolTip="Available Stock" ForeColor="Red" Font-Bold="true"></asp:Label>
                                                              <br />
-                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                             Price:<asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
                                                              &nbsp;x&nbsp;
-                                                             <asp:TextBox ID="txtProductQuantity_TextChanged" runat="server" Width="10px" Height="10px" MaxLength="1"
+                                                             <asp:TextBox ID="txtProductQuantity" runat="server" Width="10px" Height="10px" MaxLength="1"
                                                                  OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true" Text='<%# Eval("ProductQuantity")%>'></asp:TextBox>
                                                              <asp:HiddenField ID="hfProductID" runat="server" Value='<%# Eval("ProductID") %>' />
                                                          </td>
@@ -198,6 +198,16 @@
                                                </asp:DataList> 
                                                       </td>
                                                   </tr>
+                                              <tr>
+                                                  <td align="center">
+                                                      &nbsp;
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td align="center">
+                                                      &nbsp;
+                                                  </td>
+                                              </tr>
                                             </table>
                                          </asp:Panel>  
                                    </td>            

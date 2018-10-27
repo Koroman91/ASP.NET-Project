@@ -93,7 +93,7 @@ namespace Shop.BusinessLayer
         public DataTable GetAllCategories()
         {
             SqlParameter[] parameters = new SqlParameter[1];
-            parameters[0] = DataLayer.DataAccess.AddParameter("@CtegoryID", CategoryID, System.Data.SqlDbType.Int, 20);
+            parameters[0] = DataLayer.DataAccess.AddParameter("@CategoryID", CategoryID, System.Data.SqlDbType.Int, 20);
             DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
             return dt;
         }

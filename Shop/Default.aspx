@@ -377,7 +377,7 @@
                               </tr>
                               <tr>
                                   <td colspan="2" align="center" style="border: thin ridge #9900FF">
-                                      &nbsp;&copy; <a href="http://20Fingers2Brains.Blogspot.com">Stefan Korolija</a>
+                                      &nbsp;&copy; <a href="https://github.com/Koroman91">Stefan Korolija</a>
                                       || <a href="Administrator/Login.aspx" target="_blank">AdminPanel</a> || <a href="TrackYourOrder.aspx" target="_blank">TrackOrderStatus</a>
                                   </td>
                               </tr>

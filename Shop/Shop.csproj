@@ -81,10 +81,12 @@
     <Content Include="Images\Star.png" />
     <Content Include="OrderTemplate.html" />
     <Content Include="ProductImages\AppleiPhone8.jpeg" />
-    <Content Include="ProductImages\trt.png" />
+    <Content Include="ProductImages\SamsungGalaxyNote8.jpg" />
     <Content Include="TrackYourOrder.aspx" />
     <Content Include="ucCustomerOrder.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator\AddEditCategory.aspx.cs">

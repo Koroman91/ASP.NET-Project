@@ -298,13 +298,11 @@ namespace Shop
             lblCategoryName.Text = "Popular Products At Shop";
             lblProducts.Text = "Products";
 
-
-
-            pnlMyCart.Visible = false;
-            pnlCheckOut.Visible = false;
             pnlCategories.Visible = true;
             pnlProducts.Visible = true;
-            pnlEmptyCart.Visible = true;
+            pnlMyCart.Visible = false;
+            pnlCheckOut.Visible = false;         
+            pnlEmptyCart.Visible = false;
             pnlOrderPlacedSuccessfully.Visible = false;
 
             GetProducts(0);
@@ -374,6 +372,8 @@ namespace Shop
                 pnlProducts.Visible = false;
                 pnlEmptyCart.Visible = false;
 
+                //SendOrderPlaceAlert(txtCustomerName.Text, txtCustomerEmailID.Text, Convert.ToString(dtResult.Rows[0][0]));
+
                 txtCustomerAddress.Text = string.Empty;
                 txtCustomerEmailID.Text = string.Empty;
                 txtCustomerName.Text = string.Empty;
@@ -393,7 +393,7 @@ namespace Shop
 
             body = body.Replace("{CustomerName}", customerName);
             body = body.Replace("{OrderNo}", transactionNo);
-            body = body.Replace("{TransactionURL}", "http://www.ShoppingHeart.com?TrackYourOrder,aspxId=" + transactionNo);
+            body = body.Replace("{TransactionURL}", "http://localhost:11332/TrackYourOrder.aspx?Id=" + transactionNo);
             return body;
         }
 

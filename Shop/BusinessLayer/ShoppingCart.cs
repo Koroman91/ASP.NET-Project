@@ -65,7 +65,7 @@ namespace Shop.BusinessLayer
             parameters[5] = DataLayer.DataAccess.AddParameter("@TotalPrice", TotalPrice, System.Data.SqlDbType.Int, 100);
             parameters[6] = DataLayer.DataAccess.AddParameter("@PaymentMethod", PaymentMethod, System.Data.SqlDbType.VarChar, 100);
 
-            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_CustomerDetails", parameters);
+            DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_SaveCustomerDetails", parameters);
 
             return dt;
         }

@@ -70,6 +70,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Images\adminicon1.png" />
     <Content Include="Images\CustomerDetails.png" />
+    <Content Include="Images\CustomerIcon.png" />
     <Content Include="Images\DeliveryStatus.png" />
     <Content Include="Images\EmptyShoppingCart.jpg" />
     <Content Include="Images\HappyShopping.jpg" />

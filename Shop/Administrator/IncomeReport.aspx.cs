@@ -25,7 +25,7 @@ namespace Shop.Administrator
 
         }
             
-        public void GetIncomeReport()
+        private void GetIncomeReport()
         {
             ShoppingCart k = new ShoppingCart()
             {

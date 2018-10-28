@@ -43,7 +43,7 @@
                                  <td align="right" style="width: 50%; padding-right: 30px;">
                                      Name :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblCustomerName" runat="server"></asp:Label>
                                  </td>
                              </tr>
@@ -51,7 +51,7 @@
                                  <td align="right" style="width: 50%; padding-right: 30px;">
                                      EmailId :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblCustomerEmailId" runat="server"></asp:Label>
                                  </td>
                              </tr>
@@ -59,15 +59,15 @@
                                  <td align="right" style="width: 50%; padding-right: 30px;">
                                      PhoneNo :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblCustomerPhoneNo" runat="server"></asp:Label>
                                  </td>
                              </tr>
                              <tr>
                                  <td align="right" style="width: 50%; padding-right: 30px;">
-                                     Totalproducts :
+                                     TotalProducts :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblTotalProducts" runat="server"></asp:Label>
                                  </td>
                              </tr>
@@ -75,16 +75,16 @@
                                  <td align="right" style="width: 50%; padding-right: 30px;">
                                      TotalPrice :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
                                  </td>
                              </tr>
                              <tr>
-                                 <td align="right" style="width: 50%; padding-right: 30px;">
+                                 <td align="right" style="width: 50%; padding-right: 30px;" valign="top">
                                      Address :
                                  </td>
-                                 <td align="left" style="width: 50px;">
-                                     <asp:TextBox ID="txtCustomerAddress" runat="server" Height="73px" ReadOnly="true"
+                                 <td align="left" style="width: 50%;">
+                                     <asp:TextBox ID="txtCustomerAddress" runat="server" Height="73px" ReadOnly="True"
                                          TextMode="MultiLine" Width="260px"></asp:TextBox>
                                  </td>
                              </tr>
@@ -92,7 +92,7 @@
                                  <td align="right" style="width: 50%; padding-right: 30px;" valign="top">
                                      PaymentMethod :
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      <asp:Label ID="lblPaymentMethod" runat="server"></asp:Label>
                                  </td>
                              </tr>
@@ -100,7 +100,7 @@
                                  <td align="center" style="width: 50%;">
                                      &nbsp;
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      &nbsp;
                                  </td>
                              </tr>
@@ -108,14 +108,14 @@
                                  <td align="center" style="width: 50%;">
                                      &nbsp;
                                  </td>
-                                 <td align="left" style="width: 50px;">
+                                 <td align="left" style="width: 50%;">
                                      &nbsp;
                                  </td>
                              </tr>
                          </table>
                      </asp:Panel>
                      <asp:Panel ID="Panel2" runat="server">
-                         <table class="styleorderDetails">
+                         <table class="styleOrderDetails">
                              <tr>
                                  <td align="center">
                                      <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/CustomerIcon.png" Height="150px" />
@@ -124,7 +124,7 @@
                             </tr>
                              <tr>
                                  <td align="center">
-                                     <asp:DataList ID="dlproducts" runat="server" Font-Bold="False" Font-Italic="False"
+                                     <asp:DataList ID="dlProducts" runat="server" Font-Bold="False" Font-Italic="False"
                                          Font-OverLine="False" Font-Strikeout="False" Font-Underline="False" RepeatColumns="3"
                                          Width="500px">
                                          <ItemTemplate>
@@ -158,7 +158,7 @@
                          </table>
                      </asp:Panel>
                      <asp:Panel ID="Panel3" runat="server">
-                         <table class="styleorderDetails">
+                         <table class="styleOrderDetails">
                              <tr>
                                  <td align="center">
                                      <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/DeliveryStatus.png" Height="150px" />
@@ -171,7 +171,7 @@
                                         GridLines="Horizontal" Width="100%" BackColor="White" 
                                         BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                        <HeaderStyle BackColor="#333333" Font-Bold="true" ForeColor="White" />
+                                        <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                                         <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
                                         <RowStyle HorizontalAlign="Center"/>
                                         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
@@ -192,7 +192,7 @@
                          </table>
                      </asp:Panel>
                      <asp:Panel ID="Panel4" runat ="server">
-                         <table class="styleorderDetails">
+                         <table class="styleOrderDetails">
                              <tr>
                                  <td align="center">
                                      <asp:Image ID="Image4" runat="server" ImageUrl="~/Images/NoResults.png" Height="150px" />

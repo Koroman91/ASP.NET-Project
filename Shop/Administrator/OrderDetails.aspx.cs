@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Shop.BusinessLayer;
+using System.Data;
 
 namespace Shop.Administrator
 {
@@ -30,7 +32,7 @@ namespace Shop.Administrator
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Admin/OrderDetails.aspx");
+            Response.Redirect("~/Administrator/OrderDetails.aspx");
         }
     }
 }

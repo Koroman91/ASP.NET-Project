@@ -98,8 +98,8 @@ namespace Shop
                         Flag = OrderNo
                     };
 
-                    dlproducts.DataSource = k.GetTransactionDetails();
-                    dlproducts.DataBind();
+                    dlProducts.DataSource = k.GetTransactionDetails();
+                    dlProducts.DataBind();
                 }
                 if (PanelId == "3")
                 {
@@ -155,13 +155,13 @@ namespace Shop
         }
             
 
-        private void GetSetOrderStatus(int flag)
+        private void GetSetOrderStatus(int Flag)
         {
             ShoppingCart k = new ShoppingCart
             {
                 OrderStatus = txtStatus.Text,
                 OrderNo = txtTransactionNo.Text,
-                Flag = flag
+                Flag = Flag
             };
             DataTable dt = k.GetSetOrderStatus();
 

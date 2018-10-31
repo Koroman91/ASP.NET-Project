@@ -75,6 +75,7 @@
     <Content Include="Images\EmptyShoppingCart.jpg" />
     <Content Include="Images\HappyShopping.jpg" />
     <Content Include="Images\NoResults.png" />
+    <Content Include="Images\shop.png" />
     <Content Include="Images\shop1.png" />
     <Content Include="Images\ShopCartProject.png" />
     <Content Include="Images\shopping-cart-icon.png" />

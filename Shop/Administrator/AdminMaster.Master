@@ -5,6 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 514px;
+        }
+        b {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
      <form id="form2" runat="server">
@@ -18,19 +26,20 @@
                  <table align="center" style="border-bottom-style: ridge; border-width: medium; width: 900px; border-color: #9933FF">
                      <tr>
                          <td align="center">
-                 <asp:Image ID="Image1" runat="server" Height="67px" ImageUrl="~/Images/shop1.png"
-                    Width="57px" />
+                 <asp:Image ID="Image1" runat="server" Height="67px" ImageUrl="~/Images/shop.png"
+                    Width="67px" />
                  &nbsp;
                 </td>
-             <td> 
-              <asp:LinkButton ID="lblLogo" runat="server" Text="Shopping" Font-Names="Eras Demi ITC"
-                  Font-Size="20pt" ForeColor="#6600CC"></asp:LinkButton>
+             <td class="auto-style1"> 
+              <asp:LinkButton ID="lblLogo" runat="server" Text="TechSchop" Font-Names="Eras Demi ITC"
+                  Font-Size="28pt" ForeColor="#6600CC"></asp:LinkButton>
          <br />
-                 Shopping!!!
+                 <b>Let's buy what you need! Choose Your favorite brand!</b>
          </td>       
-             <td align="center">
-              <asp:Image ID="Image2" runat="server" Height="81px" ImageUrl="~/Images/adminicon1.png"
-                  Width="109px" />
+             <td>
+              <asp:Image ID="Image2" align="left" runat="server" Height="67px" ImageUrl="~/Images/adminicon1.png"
+                  Width="115px" />
+              <asp:Button ID="logoutButton" align="center" runat="server" Text="Logout" ForeColor="Blue" OnClick="logoutButton_Click" CausesValidation="False" />
                 </td>
                      </tr>
                  </table>
@@ -66,7 +75,7 @@
          </tr>
          <tr>
              <td colspan="2" align="center">
-                 &nbsp;&copy; Stefan Korolija
+               <b>  &nbsp;&copy; Stefan Korolija</b>
              </td>
          </tr>
          </table>

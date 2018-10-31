@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Shop.BusinessLayer;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Shop.Administrator
 {
@@ -16,8 +17,28 @@ namespace Shop.Administrator
             if (!IsPostBack)
             {
                 GetCategories();
+            
+
+            AddSubmitEvent();
+
+            if (Request.QueryString["alert"] == "success")
+            {
+                Response.Write("<script>alert('Record Saved Sucessfully.');</script>");
             }
+         }
+
         }
+
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            UpdatePanelControlTrigger trigger = new PostBackTrigger();
+            trigger.ControlID = btnSubmit.UniqueID;
+
+            updatePanel.Triggers.Add(trigger);
+        }
+
+
 
         private void GetCategories()
         {
@@ -32,10 +53,7 @@ namespace Shop.Administrator
             }
         }
 
-        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -49,22 +67,26 @@ namespace Shop.Administrator
                     ProductImage = "~/ProductImages/" + uploadProductPhoto.FileName,
                     ProductPrice = txtProductPrice.Text,
                     ProductDescription = txtProductDescription.Text,
-                    CategoryID = Convert.ToInt32(ddlCategory.SelectedValue)
+                    CategoryID = Convert.ToInt32(ddlCategory.SelectedValue),
+                    TotalProducts = Convert.ToInt32(txtProductQuantity.Text)
                 };
                 k.AddNewProduct();
                 ClearText();
+                Response.Redirect("~/Administrator/AddNewProducts.aspx?alert=success");
             }
             else
             {
-                //Alert.Show("Upload Product Photo");
+                Response.Write("<script>alert('Please Upload Photo');</script>");
             }
         }
 
         private void ClearText()
         {
+            uploadProductPhoto = null;
             txtProductName.Text = string.Empty;
             txtProductPrice.Text = string.Empty;
             txtProductDescription.Text = string.Empty;
+            txtProductQuantity.Text = string.Empty;
         }
 
         private void SaveProductPhoto()
@@ -94,6 +116,15 @@ namespace Shop.Administrator
                 }
             }
             }
-           
+
+
+
+
+
+        /*  public DataTable GetCategories()
+          {
+              SqlParameter[] parameters = new SqlParameter[0];
+              DataTable dt = DataLayer.DataAccess.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
+          } */
     }
 }

@@ -1,33 +1,45 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="Shop.Administrator.AdminMaster" %>
 
-<?xml version="1.0"?>
-<!DOCTYPE html PUBLIC "-//W3//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 514px;
+        }
+        b {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
      <form id="form2" runat="server">
+   <asp:ScriptManager ID="ScriptManager1" runat="server">
+   </asp:ScriptManager>
+    <asp:UpdatePanel ID="AdminUpdatePanel" runat="server">
+        <ContentTemplate>
      <table align="center" style="width: 900px;">
          <tr>
              <td> 
                  <table align="center" style="border-bottom-style: ridge; border-width: medium; width: 900px; border-color: #9933FF">
                      <tr>
                          <td align="center">
-                 <asp:Image ID="Image1" runat="server" Height="67px" ImageUrl="~/Images/shop1.png"
-                    Width="57px" />
+                 <asp:Image ID="Image1" runat="server" Height="67px" ImageUrl="~/Images/shop.png"
+                    Width="67px" />
                  &nbsp;
                 </td>
-             <td> 
-              <asp:LinkButton ID="lblLogo" runat="server" Text="Shopping" Font-Names="Eras Demi ITC"
-                  Font-Size="20pt" ForeColor="#6600CC"></asp:LinkButton>
+             <td class="auto-style1"> 
+              <asp:LinkButton ID="lblLogo" runat="server" Text="TechSchop" Font-Names="Eras Demi ITC"
+                  Font-Size="28pt" ForeColor="#6600CC"></asp:LinkButton>
          <br />
-                 Shopping!!!
+                 <b>Let's buy what you need! Choose Your favorite brand!</b>
          </td>       
-             <td align="center">
-              <asp:Image ID="Image2" runat="server" Height="81px" ImageUrl="~/Images/adminicon1.png"
-                  Width="109px" />
+             <td>
+              <asp:Image ID="Image2" align="left" runat="server" Height="67px" ImageUrl="~/Images/adminicon1.png"
+                  Width="115px" />
+              <asp:Button ID="logoutButton" align="center" runat="server" Text="Logout" ForeColor="Blue" OnClick="logoutButton_Click" CausesValidation="False" />
                 </td>
                      </tr>
                  </table>
@@ -38,8 +50,10 @@
                  <table align="center" style="border: thin ridge #9900FF; width: 900px;">
                    <tr>
                        <td class="style2">
-                           <a href="AddEditCategory.aspx">Category</a>&nbsp; <a href="AddNewProducts.aspx">Products</a>
-                           <a href="#">CustomerOrders</a>
+                           <a href="AddEditCategory.aspx">AddCategory</a>&nbsp; <a href="AddNewProducts.aspx">AddProducts</a>
+                           <a href="Category.aspx">AllCategory</a>&nbsp; <a href="Products.aspx">AllProducts</a>
+                           <a href="CustomerOrders.aspx">CustomerOrders</a> <a href="ProductStock.aspx">ProductStock</a>
+                           <a href="IncomeReport.aspx">IncomeReport</a>
                         </td>
                    </tr>
      </table>
@@ -60,11 +74,13 @@
              </td>
          </tr>
          <tr>
-             <td coslpan="2" align="center">
-                 &nbsp;&copy; Stefan Korolija
+             <td colspan="2" align="center">
+               <b>  &nbsp;&copy; Stefan Korolija</b>
              </td>
          </tr>
          </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>

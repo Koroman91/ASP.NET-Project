@@ -12,7 +12,7 @@ namespace Shop.Administrator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtLoginId.Focus();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace Shop.Administrator
             if (txtLoginId.Text == LoginID && txtPassword.Text == Password)
             {
                 Session["ShopAdministrator"] = "ShopAdministrator";
-                Response.Redirect("~/Administator/AddNewProducts.aspx");
+                Response.Redirect("~/Administrator/AddNewProducts.aspx");
             }
             {
                 lblAlert.Text = "Wrong LoginId/Password";

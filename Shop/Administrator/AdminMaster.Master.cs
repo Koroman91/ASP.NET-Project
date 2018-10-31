@@ -16,5 +16,14 @@ namespace Shop.Administrator
                 Response.Redirect("~/Administrator/Login.aspx");
             }
         }
+
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Session.RemoveAll();
+            Response.Redirect("~/Administrator/Login.aspx");
+            
+        }
     }
 }

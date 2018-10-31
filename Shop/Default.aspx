@@ -59,10 +59,9 @@
                             &nbsp;
                         </td>
                         <td class="style6" rowspan="2">
-                            <asp:LinkButton ID="lblLogo" runat="server" Text="Shopping" Font-Names="Eras Demi ITC"   
-                            Font-Size="20pt" ForeColor="#6600CC" OnClick="lblLogo_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="lblLogo" runat="server" Text="TechShop" Font-Names="Eras Demi ITC"   
+                            Font-Bold="True" Font-Size="35pt" ForeColor="#6600CC" OnClick="lblLogo_Click"></asp:LinkButton>
                             <br  />
-                            Let's shopping!!!
                         </td>
                         <td class="style7" rowspan="2">
                             <asp:Image ID="Image3" runat="server" Height="67px" ImageUrl="~/Images/shoppingcart.png"
